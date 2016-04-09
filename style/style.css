@@ -1,0 +1,352 @@
+html{
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+}
+
+body{
+	background-image: url("../images/fond.png");
+	background-repeat: repeat-x;
+	background-size: 120%;
+}
+
+/*Css des titres*/
+h1{
+	text-align: center;
+}
+h2{
+	
+}
+h3{
+	margin-left: 10px;
+}
+
+/*Décomposition des rubriques*/
+
+/*Selecteur*/
+#rubrique{
+	width: 222px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#rubrique select{
+	font-size: 1em;
+	background-color: #CECCE3;
+	color: #606B81;
+	border: 2px solid #148DB5;
+	width: 350px;
+	height: 40px;
+}
+
+#rubrique select:hover{
+	background-color: #CECCE0;
+	color:#26282B;
+}
+
+/*Choix Salaire*/
+#choixSalaire{
+	display: none;
+}
+/*Choix Allocation*/
+#choixAlloc{
+	display: none;
+}
+/*Choix Recherche*/
+#choixRech{
+	display: none;
+}
+
+/*tableau des salaires et des allocations*/
+table{
+	background-color: #BCC0C7;
+	border: 2px dashed #323C66;
+	padding: 10px;
+	width: 75em;
+}
+
+th{
+	text-align: left;
+	color: #037B17;
+ 	min-width: 50px;
+}
+td{
+ 	min-width: 50px;
+}
+
+#scroll{
+ 	width: 75em;
+ 	height: 170px;
+ 	overflow-y: auto;
+ 	overflow-x: hidden;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ } 
+
+ #scroll2{
+ 	width: 75em;
+ 	height: 170px;
+ 	overflow-y: auto;
+ 	overflow-x: hidden;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ } 
+
+ #loupe{
+ 	float: right;
+ }
+ #loupe:hover{
+ 	cursor: pointer;
+ }
+
+ #loupe2{
+ 	float: right;
+ }
+ #loupe2:hover{
+ 	cursor: pointer;
+ }
+
+/*Css Page*/
+.container{
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.container2{
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*Css des boutons*/
+.button{
+	display: block;
+	width: 250px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	padding: 10px;
+}
+
+.button:hover{
+	border-color: white;
+	background-color: #3F36F6;
+	color:white;
+	cursor:pointer;
+}
+
+.button2{
+	display: block;
+	width: 250px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	padding: 10px;
+}
+
+.button2:hover{
+	border-color: white;
+	background-color: #3F36F6;
+	color:white;
+	cursor:pointer;
+}
+
+.valide, .reset{
+	padding: 10px;
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.valide:hover, .reset:hover{
+	border-color: white;
+	background-color: #3F36F6;
+	color:white;
+	cursor:pointer;
+}
+
+/*Formulaire de recherche*/
+#rechForm{
+	background-color: #CECECE;
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+
+#rechForm p{
+	margin: 20px;
+}
+
+#rechForm input[type="date"], #rechForm select{
+	float: right;
+}
+
+#rechForm .valide, #rechForm .reset{
+	margin: 20px;
+}
+
+/*Tableau d'affichage de la recherche*/
+
+#result{ /*Element conteneur*/
+	display:none;
+	width: 75em;
+ 	height: 420px;
+ 	overflow-y: auto;
+ 	overflow-x: hidden;
+ 	margin-left: auto;
+ 	margin-right: auto;
+}
+
+
+/*Formulaire enregistrement nouveau salaire ou revenu*/
+#formNew{
+	display:none;
+	width: 100%;
+	background-color: #CECECE;
+}
+
+#formNew label{
+	color: blue;
+}
+
+#formNew2{
+	display:none;
+	width: 100%;
+	background-color: #CECECE;
+}
+
+#formNew2 label{
+	color: blue;
+}
+
+.champs{
+	float: right;
+}
+.champs2{
+	float: right;
+}
+
+/*pop-up new employeur*/
+#fond {
+	display: none;
+	position:absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.5;
+}
+#fenetreForm {
+	display: none;
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	border: 5px solid black;
+	width: 50%;
+	height: 50%;
+	padding: 10px;
+	background-color: white;
+	z-index: 150;
+}
+
+#fenetreForm fieldset{
+	padding: 0 20px 20px 20px;
+	margin-bottom: 10px;
+}
+
+#fenetreForm fieldset label{
+	
+}
+
+#fenetreForm fieldset input{
+	width: 65%;
+	float: right;
+}
+#fenetreForm img{
+	float: right;
+	margin-left: 2px;
+}
+#fenetreForm img:hover{
+	cursor:pointer;
+}
+
+/*pop-up new etablissement*/
+#fond2 {
+	display: none;
+	position:absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.5;
+}
+#fenetreForm2 {
+	display: none;
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	border: 5px solid black;
+	width: 50%;
+	height: 50%;
+	padding: 10px;
+	background-color: white;
+	z-index: 150;
+}
+
+#fenetreForm2 fieldset{
+	padding: 0 20px 20px 20px;
+	margin-bottom: 10px;
+}
+
+#fenetreForm2 fieldset label{
+	
+}
+
+#fenetreForm2 fieldset input{
+	width: 65%;
+	float: right;
+}
+#fenetreForm2 img{
+	float: right;
+	margin-left: 2px;
+}
+#fenetreForm2 img:hover{
+	cursor:pointer;
+}
+
+/*Messages d'erreur*/
+
+#message, #message2, #message3, #message4, #message5{
+	display: none;
+	font-weight: bold;
+	font-size: 12px;
+	margin-left: 10px;
+	color: red;
+}
+
+p.red{
+	position: relative;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+/* Couleur défini */
+.orange{
+	color:#CC4A14;
+}
+.brown{
+	color:#99583D;
+}
+.red{
+	color:#FF0000;
+}
+.greenC{
+	color:#40FF40;
+}
+.greenF{
+	color:#54CC14;
+}
