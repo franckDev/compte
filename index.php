@@ -37,7 +37,6 @@
 						<th>Date de début</th>
 						<th>Date de fin</th>
 						<th>Date de paie</th>
-						<!-- <th>Montant Brut</th> -->
 						<th>Montant Net</th>
 						<th>Montant Net Imposable</th>
 						<th>Heures du mois</th>
@@ -55,7 +54,6 @@
 					<td><?php $dated=date_create($donnees['dateDebut']); echo date_format($dated, "d/m/Y"); ?></td>
 					<td><?php $datef=date_create($donnees['dateFin']);echo date_format($datef, "d/m/Y"); ?></td>
 					<td><?php $datep=date_create($donnees['datePaie']);echo date_format($datep, "d/m/Y"); ?></td>
-					<!-- <td><?php echo $donnees['montantBrut']; ?> €</td> -->
 					<td><?php echo $donnees['montantNet']; ?> €</td>
 					<td><?php echo $donnees['montantNetImp']; ?> €</td>
 					<td><?php echo $donnees['nbreHeureMois']; ?></td>
@@ -74,7 +72,7 @@
 							<h3>Formulaire d'enregistrement</h3>
 							<p>
 								<label for="nomEmployeur">Sélectionnez un employeur</label>
-								<select class="champs" name="listEmployeur">
+								<select id="EmpChoix" class="champs" name="listEmployeur">
 									<option value="choix">Choisissez</option>
 									<?php
 										// On sélectionne la liste des employeurs
@@ -200,7 +198,7 @@
 							<h3>Formulaire d'enregistrement</h3>
 							<p>
 								<label for="nomEtablissement">Sélectionnez un etablissement</label>
-								<select class="champs2" name="listEtablissement">
+								<select id="EtabChoix" class="champs2" name="listEtablissement">
 									<option value="choix2">Choisissez</option>
 									<?php
 										// On sélectionne la liste des employeurs

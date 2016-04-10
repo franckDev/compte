@@ -16,24 +16,32 @@ $(document).ready(function(){
 				$("p#message2").css('display', 'block'); // On active le message
 				$("p#message2").empty(); // On vide le message
 				$("p#message2").append(texte); // Affiche le résultat dans le message
+                $("#EtabChoix").load("reload/selectEtab.php"); // On recharge le selecteur
+                $("#fond2").fadeOut(1500,"linear"); // On referme le fond du pop-up
+                $("#fenetreForm2").fadeOut(1500,"linear"); // Et la fenêtre
 
 			}else if (choix == "fenetreForm3") {  /********** Enregistrer un salaire ***************/
 
 				$("p#message3").css('display', 'block'); // On active le message
 				$("p#message3").empty(); // On vide le message
 				$("p#message3").append(texte); // Affiche le résultat dans le message
+                $("div#scroll").load("reload/tableSal.php"); // On recharge le tableau des salaires
 				
 			}else if (choix == "fenetreForm") {  /******* Enregistrer un nouvel employeur *********/
 
 				$("p#message").css('display', 'block'); // On active le message
 				$("p#message").empty(); // On vide le message
 				$("p#message").append(texte); // Affiche le résultat dans le message
+                $("#EmpChoix").load("reload/selectEmp.php"); // On recharge le selecteur
+                $("#fond").fadeOut(1500,"linear"); // On referme le fond du pop-up
+                $("#fenetreForm").fadeOut(1500,"linear"); // Et la fenêtre
 				
 			}else if (choix == "fenetreForm4") {  /********** Enregistrer une allocation ***************/
 
 				$("p#message4").css('display', 'block'); // On active le message
 				$("p#message4").empty(); // On vide le message
 				$("p#message4").append(texte); // Affiche le résultat dans le message
+                $("div#scroll2").load("reload/tableAll.php"); // On recharge le tableau des allocations
 				
 			}else if (choix == "rechForm") {   /********** Recherche multi-critères ***************/
 
