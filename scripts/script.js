@@ -12,43 +12,58 @@ $(document).ready(function(){
 		$.post("Form.php",$(this).serialize(),function(texte){ // On créé une variable contenant le formulaire sérialisé
 		
 			if (choix == "fenetreForm2") {  /********** Enregistrer un nouvel etablissement ********/
-
-				$("p#message2").css('display', 'block'); // On active le message
-				$("p#message2").empty(); // On vide le message
-				$("p#message2").append(texte); // Affiche le résultat dans le message
-                $("#EtabChoix").load("reload/selectEtab.php"); // On recharge le selecteur
-                $("#fond2").fadeOut(1500,"linear"); // On referme le fond du pop-up
-                $("#fenetreForm2").fadeOut(1500,"linear"); // Et la fenêtre
-
+                if(texte == "Enregistrement effectué avec succès !"){
+                    $("p#message2").css('display', 'block'); // On active le message
+                    $("p#message2").empty(); // On vide le message
+                    $("p#message2").append(texte); // Affiche le résultat dans le message
+                    $("#EtabChoix").load("reload/selectEtab.php"); // On recharge le selecteur
+                    $("#fond2").fadeOut(1500,"linear"); // On referme le fond du pop-up
+                    $("#fenetreForm2").fadeOut(1500,"linear"); // Et la fenêtre
+                }else{
+                    $("p#message2").css('display', 'block'); // On active le message
+                    $("p#message2").empty(); // On vide le message
+                    $("p#message2").append(texte); // Affiche le résultat dans le message
+                }
 			}else if (choix == "fenetreForm3") {  /********** Enregistrer un salaire ***************/
-
-				$("p#message3").css('display', 'block'); // On active le message
-				$("p#message3").empty(); // On vide le message
-				$("p#message3").append(texte); // Affiche le résultat dans le message
-                $("div#scroll").load("reload/tableSal.php"); // On recharge le tableau des salaires
-				
+                if(texte == "Enregistrement effectué avec succès !"){
+                    $("p#message3").css('display', 'block'); // On active le message
+                    $("p#message3").empty(); // On vide le message
+                    $("p#message3").append(texte); // Affiche le résultat dans le message
+                    $("div#scroll").load("reload/tableSal.php"); // On recharge le tableau des salaires
+                }else{
+                    $("p#message3").css('display', 'block'); // On active le message
+                    $("p#message3").empty(); // On vide le message
+                    $("p#message3").append(texte); // Affiche le résultat dans le message
+                }
 			}else if (choix == "fenetreForm") {  /******* Enregistrer un nouvel employeur *********/
-
-				$("p#message").css('display', 'block'); // On active le message
-				$("p#message").empty(); // On vide le message
-				$("p#message").append(texte); // Affiche le résultat dans le message
-                $("#EmpChoix").load("reload/selectEmp.php"); // On recharge le selecteur
-                $("#fond").fadeOut(1500,"linear"); // On referme le fond du pop-up
-                $("#fenetreForm").fadeOut(1500,"linear"); // Et la fenêtre
-				
+                if(texte == "Enregistrement effectué avec succès !"){
+                    $("p#message").css('display', 'block'); // On active le message
+                    $("p#message").empty(); // On vide le message
+                    $("p#message").append(texte); // Affiche le résultat dans le message
+                    $("#EmpChoix").load("reload/selectEmp.php"); // On recharge le selecteur
+                    $("#fond").fadeOut(1500,"linear"); // On referme le fond du pop-up
+                    $("#fenetreForm").fadeOut(1500,"linear"); // Et la fenêtre 
+                }else{
+                    $("p#message").css('display', 'block'); // On active le message
+                    $("p#message").empty(); // On vide le message
+                    $("p#message").append(texte); // Affiche le résultat dans le message
+                }
 			}else if (choix == "fenetreForm4") {  /********** Enregistrer une allocation ***************/
-
-				$("p#message4").css('display', 'block'); // On active le message
-				$("p#message4").empty(); // On vide le message
-				$("p#message4").append(texte); // Affiche le résultat dans le message
-                $("div#scroll2").load("reload/tableAll.php"); // On recharge le tableau des allocations
-				
+                if(texte == "Enregistrement effectué avec succès !"){
+                    $("p#message4").css('display', 'block'); // On active le message
+                    $("p#message4").empty(); // On vide le message
+                    $("p#message4").append(texte); // Affiche le résultat dans le message
+                    $("div#scroll2").load("reload/tableAll.php"); // On recharge le tableau des allocations
+                }else{
+                    $("p#message4").css('display', 'block'); // On active le message
+                    $("p#message4").empty(); // On vide le message
+                    $("p#message4").append(texte); // Affiche le résultat dans le message
+                }
 			}else if (choix == "rechForm") {   /********** Recherche multi-critères ***************/
 
 				$("div#result").css('display', 'block'); // On active champs conteneur
 				$("div#result").empty(); // On le vide 
 				$("div#result").append(texte); // Affiche le résultat
-				
 			}
 		});
 		return false;
@@ -83,19 +98,22 @@ $(document).ready(function(){
     	}
 	});
 
+    // Affichage du formulaire des salaires en mode modification
+    $('.modSal').click(function(event){
+        event.preventDefault();
+        $('#formNew').css('display', 'block');
+        $('.button').html('Fermer le formulaire');
+        var idSal = $('.modSal').attr("href"); // On récupère l'id sélectionnée
+        $('#formNew').load("modif/modifSal.php",{ "id[]": [idSal, ""] });
+    });
+
 	// Affichage / Masquage des formulaires salaires 
     $('button.button').click(function(){
- 
-    	if($('#formNew').css('display') == 'none'){
-
-    		$('#formNew').css('display', 'block');
-        	$('#enreg').css('display', 'none');
+        if($('#formNew').css('display') == 'none'){
+            $('#formNew').css('display', 'block');
         	$('.button').html('Fermer le formulaire');
-
-    	}else{
-
-    		$('#formNew').css('display', 'none');
-        	$('#enreg').css('display', 'block');
+        }else{
+            $('#formNew').css('display', 'none');
         	$('.button').html('Enregistrer un salaire');
         }
     });
