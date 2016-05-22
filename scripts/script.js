@@ -104,7 +104,7 @@ $(document).ready(function(){
         $('#formNew').css('display', 'block');
         $('.button').html('Fermer le formulaire');
         var idSal = $('.modSal').attr("href"); // On récupère l'id sélectionnée
-        $('#formNew').load("modif/modifSal.php",{ "id[]": [idSal, ""] });
+        // $('#formNew').load("modif/modifSal.php",{ "id[]": [idSal, ""] });
     });
 
 	// Affichage / Masquage des formulaires salaires 

@@ -1,1 +1,3 @@
-<?php var_dump($_POST["id"]["0"]); ?>
+<?php
+	// var_dump($_POST["id"]["0"]);
+?>
