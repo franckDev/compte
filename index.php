@@ -178,6 +178,7 @@
 				<table>
 					<tr>
 						<th>Etablissement</th>
+						<th>Type de prestation</th>
 						<th>Date de versement</th>
 						<th>Montant Net</th>
 						<th>Paiement à un tiers</th>
@@ -191,6 +192,7 @@
 				?>
 				<tr>
 					<td><?php echo $donnees['RaisonSociale']; ?></td>
+					<td><?php echo $donnees['TypePresta']; ?></td>
 					<td><?php $datev=date_create($donnees['dateVersement']); echo date_format($datev, "d/m/Y"); ?></td>
 					<td><?php echo $donnees['montantNet']; ?> €</td>
 					<td><?php if ($donnees['paiementTiers']) echo "Oui"; else echo "Non"; ?></td>
@@ -273,7 +275,8 @@
 							<option value="Aucune">Choisissez une prestation</option>
 							<option value="Logement">Allocation Logement</option>
 							<option value="Famille">Allocation Familiale</option>
-							<option value="Chomage">Allocation Chomage</option>
+							<option value="Chomage ARE">Allocation Chomage (ARE)</option>
+							<option value="Chomage ASS">Allocation Chomage (ASS)</option>
 						</select>
 					</p>
 				</fieldset>
