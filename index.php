@@ -4,9 +4,11 @@
 		<meta charset="utf-8" />
 		<title>Salaire & Allocations</title>
 		<link rel="stylesheet" href="style/style.css" />
+		<link rel="stylesheet" href="style/jcalculator.css" />
 	<!-- /**********************************SCRIPTS JQUERY****************************************************/ -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="scripts/script.js"></script>
+	<script src="scripts/jcalculator.js"></script>
 	</head>
 	<body>
 		<?php
@@ -122,7 +124,7 @@
 							</p>
 							<p>
 								<label for="nbreHeureTotal">Cumul d'heures travaillées de l'année</label>
-								<input class="champs" type="number" step="0.01" name="NbreHeureTotal" value="" />
+								<input id="cumul" class="champs" type="number" step="0.01" name="NbreHeureTotal" value="" />
 							</p>
 								<p id="message3"></p>
 								<input class="valide" type="submit" value="Enregistrer">
@@ -131,6 +133,12 @@
 					</form>
 				</div>
 			</div>
+			<!-- Script de calculatrice -->
+			<script>
+				$('#cumul').calculator('light');
+				$('#cumul').css('float', 'none');
+				$('.jcalculator_wrap').css('float', 'right');
+			</script>
 			<!-- Pop up formulaire nouvel employeur -->
 			<div id="fond"></div>
 			<form id="fenetreForm" action="Form.php" method="post">
