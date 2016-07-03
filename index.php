@@ -5,10 +5,10 @@
 		<title>Salaire & Allocations</title>
 		<link rel="stylesheet" href="style/style.css" />
 		<link rel="stylesheet" href="style/jcalculator.css" />
-	<!-- /**********************************SCRIPTS JQUERY****************************************************/ -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-	<script src="scripts/script.js"></script>
-	<script src="scripts/jcalculator.js"></script>
+		<!-- /**********************************SCRIPTS JQUERY****************************************************/ -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script src="scripts/script.js"></script>
+		<script src="scripts/jcalculator.js"></script>
 	</head>
 	<body>
 		<?php
@@ -31,8 +31,8 @@
 <!-- /****************************************SALAIRES**********************************************/ -->
 		<div id="choixSalaire">
 			<h1>Liste des salaires</h1>
-			<div id="bandeau"><img id="loupe" src="images/loupe.png" alt="Loupe" title="Pour agrandir cliquez ici" /></div>
 			<div id="scroll">
+			<div id="bandeau"><img id="loupe" src="images/loupe.png" alt="Loupe" title="Pour agrandir cliquez ici" /></div>
 				<table>
 					<tr>
 						<th>Employeur</th>
@@ -135,14 +135,23 @@
 			</div>
 			<!-- Script de calculatrice -->
 			<script>
-				$('#cumul').calculator('light');
-				$('#cumul').css('float', 'none');
-				$('.jcalculator_wrap').css('float', 'right');
+				$(document).ready(function(){
+					$('#cumul').calculator();
+					$('#cumul').css('float', 'none');
+					$('.jcalculator_wrap').css('float', 'right');
+					$('.jcalculator.material').css({
+						left: '235px',
+						bottom: '0px'
+					});
+					$('.eq').click(function() {
+						$('.jcalculator.material').hide();
+					});
+				});
 			</script>
 			<!-- Pop up formulaire nouvel employeur -->
 			<div id="fond"></div>
 			<form id="fenetreForm" action="Form.php" method="post">
-				<img id="fermFenetreForm"src="images/fermeture.png" alt="fermer" title="Fermer la fenêtre"><br><br>
+				<img id="fermFenetreForm" src="images/fermeture.png" alt="fermer" title="Fermer la fenêtre"><br><br>
 				<fieldset>
 					<legend>Saisissez les informations du nouvel employeur</legend>
 					<p>
@@ -173,8 +182,8 @@
 <!-- /****************************************ALLOCATIONS**********************************************/ -->
 		<div id="choixAlloc">
 			<h1>Liste des revenus d'allocations</h1>
-			<div id="bandeau2"><img id="loupe2" src="images/loupe.png" alt="Loupe" title="Pour agrandir cliquez ici" /></div>
 			<div id="scroll2">
+			<div id="bandeau2"><img id="loupe2" src="images/loupe.png" alt="Loupe" title="Pour agrandir cliquez ici" /></div>
 				<table>
 					<tr>
 						<th>Etablissement</th>
@@ -182,6 +191,7 @@
 						<th>Date de versement</th>
 						<th>Montant Net</th>
 						<th>Paiement à un tiers</th>
+						<th>Actions</th>
 					</tr>
 				<?php 
 					// On sélectionne tout ce qu'il y a dans la table des allocations avec les etablissements correspondants
@@ -189,18 +199,22 @@
 				    // On exécute la requête
 				    $resultat = $bdd->query($requete) or die(print_r($bdd->errorInfo()));
 				    while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+				
+				echo '<tr class="cible'.$donnees['IdAllocation'].'">';
 				?>
-				<tr>
 					<td><?php echo $donnees['RaisonSociale']; ?></td>
 					<td><?php echo $donnees['TypePresta']; ?></td>
 					<td><?php $datev=date_create($donnees['dateVersement']); echo date_format($datev, "d/m/Y"); ?></td>
 					<td><?php echo $donnees['montantNet']; ?> €</td>
 					<td><?php if ($donnees['paiementTiers']) echo "Oui"; else echo "Non"; ?></td>
+					<td><a class="modAlo" href="<?php echo $donnees['IdAllocation']; ?>"><img src="images/modifier.png" title="Modifier" alt="Modifier"></a></td>
+					<td><a class="supAlo" href="<?php echo $donnees['IdAllocation']; ?>"><img src="images/supprimer.png" title="Supprimer" alt="Supprimer"></a></td>
 				</tr>
 				<?php    	
 				    }
 				?>
 				</table>
+				<script src="scripts/actionsAlo.js"></script>
 			</div>
 			<div class="container2">
 				<button class="button2">Enregistrer une allocation</button>
@@ -208,6 +222,7 @@
 					<form id="fenetreForm4" action="Form.php" method="post">
 						<fieldset>
 							<h3>Formulaire d'enregistrement</h3>
+							<input id="modeAlo" type="hidden" name="enregistrement" value="enregistrement" />
 							<p>
 								<label for="nomEtablissement">Sélectionnez un etablissement</label>
 								<select id="EtabChoix" class="champs2" name="listEtablissement">
@@ -230,7 +245,7 @@
 							<p>
 								<label for="montantBrut">Montant Brut</label>
 								<input class="champs2" type="number" step="0.01" name="MontantBrutAll" value="" />
-								<input type="hidden" name="Allocation">
+								<input id="hideId" type="hidden" name="Allocation">
 							</p>
 							<p>
 								<label for="montantNet">Montant Net</label>
@@ -247,13 +262,13 @@
 									<label for="PaieTiersOui">Oui</label>
 								</p>
 								<p>
-									<input class="champs2" type="radio" name="Tiers" value="0" checked="checked" />
+									<input class="champs2" type="radio" name="Tiers" value="0" />
 									<label for="PaieTiersNon">Non</label>
 								</p>
 							</p>
 							<p id="message4"></p>
-								<input class="valide" type="submit" value="Enregistrer">
-								<input class="reset" type="reset" value="Effacer">		
+								<input id="valideAlo" class="valide" type="submit" value="Enregistrer">
+								<input id="resetAlo" class="reset" type="reset" value="Effacer">		
 						</fieldset>
 					</form>
 				</div>
@@ -261,7 +276,7 @@
 			<!-- Pop up formulaire nouvel etablissement -->
 			<div id="fond2"></div>
 			<form id="fenetreForm2" method="post" action="Form.php">
-				<img id="fermFenetreForm2"src="images/fermeture.png" alt="fermer" title="Fermer la fenêtre"><br><br>
+				<img id="fermFenetreForm2" src="images/fermeture.png" alt="fermer" title="Fermer la fenêtre"><br><br>
 				<fieldset>
 					<legend>Saisissez les informations du nouvel etablissement</legend>
 					<p>

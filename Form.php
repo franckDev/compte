@@ -12,8 +12,9 @@
 
     /********Procedure d'enregistrement d'une allocation*********/
 
-	if(isset($_POST['Allocation'])){ // Validation demandée
+	if(isset($_POST['Allocation']) && isset($_POST['enregistrement'])){ // Validation d'un enregistrement demandée
 
+		
 		// On vérifie si un etablissement a été sélectionné
 		if($_POST['listEtablissement']!="choix2" && $_POST['listEtablissement']!="enregNewEtab"){
 
@@ -24,21 +25,60 @@
 			$dateVers = htmlspecialchars(addslashes($_POST['DateVers']));
 			$tiers = htmlspecialchars(addslashes($_POST['Tiers']));
 
-			// Requête d'enregistrement d'une nouvelle allocation
-			$requete = "INSERT INTO allocations (IdAllocation , IdEtablissement , montantBrut , montantNet , dateVersement , paiementTiers , Created , idUtilisateur)
-					    VALUES ('' , '$idEtablissement' , '$montantBrutAll' , '$montantNetAll' , '$dateVers' , '$tiers' , NOW() , '1')";
-
+			// On vérifie si elle n'a pas déjà été enregistrée
+			$requete = "SELECT COUNT(*) FROM allocations WHERE dateVersement='$dateVers' AND montantNet='$montantNetAll'";
 			// On exécute la requête
 			$resultat = $bdd->query($requete) or die(print_r($bdd->errorInfo()));
+			// On lit le résultat
+			$response = $resultat->fetch();
 
-			// On ferme la requête
-			$resultat->closeCursor();
+			// On compare le résultat
+			if($response[0] == 0){
 
-			echo "Enregistrement effectué avec succès !";
+				// Requête d'enregistrement d'une nouvelle allocation
+				$requete = "INSERT INTO allocations (IdAllocation , IdEtablissement , montantBrut , montantNet , dateVersement , paiementTiers , Created , idUtilisateur)
+						    VALUES ('' , '$idEtablissement' , '$montantBrutAll' , '$montantNetAll' , '$dateVers' , '$tiers' , NOW() , '1')";
 
+				// On exécute la requête
+				$resultat = $bdd->query($requete) or die(print_r($bdd->errorInfo()));
+
+				// On ferme la requête
+				$resultat->closeCursor();
+
+				echo "Enregistrement effectué avec succès !";
+
+			}else{
+
+				// On ferme la requête
+				$resultat->closeCursor();
+
+				echo "L'allocation que vous venez de saisir existe déjà !";
+			}
 		}else{
+
 			echo "Vous devez sélectionner un établissement !";
 		}
+
+	}elseif(isset($_POST['Allocation']) && isset($_POST['modification'])){ // Validation d'une mise à jour demandée
+					
+		// on sécurise les données
+		$IdAllocation = htmlspecialchars(addslashes($_POST['Allocation']));
+		$idEtablissement = htmlspecialchars(addslashes($_POST['listEtablissement']));
+		$montantBrutAll = htmlspecialchars(addslashes($_POST['MontantBrutAll']));
+		$montantNetAll = htmlspecialchars(addslashes($_POST['MontantNetAll']));
+		$dateVers = htmlspecialchars(addslashes($_POST['DateVers']));
+		$tiers = htmlspecialchars(addslashes($_POST['Tiers']));
+
+		// Requête de mise à jour de l'allocation
+		$requete = "UPDATE allocations SET IdEtablissement='$idEtablissement',montantBrut='$montantBrutAll',montantNet='$montantNetAll',dateVersement='$dateVers',paiementTiers='$tiers' WHERE IdAllocation='$IdAllocation'";
+
+		// On exécute la requête
+		$resultat = $bdd->query($requete) or die(print_r($bdd->errorInfo()));
+
+		// On ferme la requête
+		$resultat->closeCursor();
+
+		echo "Mise à jour effectuée avec succès !";
 	}
 
 	/****Procedure d'enregistrement d'un nouvel etablissement***/
@@ -87,16 +127,34 @@
 			$nbreHeureMois = htmlspecialchars(addslashes($_POST['NbreHeureMois']));
 			$nbreHeureTotal = htmlspecialchars(addslashes($_POST['NbreHeureTotal']));
 
-			// Requête d'enregistrement d'un nouveau contact
-			$requete = "INSERT INTO salaires (IdSalaire , IdEmployeur , dateDebut , dateFin , datePaie , montantBrut , montantNet , montantNetImp , nbreHeureMois , nbreHeureTotal , divers , Created, idUtilisateur)
-					    VALUES ('' , '$idEmployeur' , '$dateDeb' , '$dateFin' , '$datePaie' , '$montantBrut' , '$montantNet' , '$montantNetImp' , '$nbreHeureMois' , '$nbreHeureTotal' , '' , NOW() , '1')";
-
-			//exécution de la requête
+			// On vérifie si il n'a pas déjà été enregistré
+			$requete = "SELECT COUNT(*) FROM salaires WHERE datePaie='$datePaie' AND montantNet='$montantNet'";
+			// On exécute la requête
 			$resultat = $bdd->query($requete) or die(print_r($bdd->errorInfo()));
-			// On ferme la requête
-			$resultat->closeCursor();
+			// On lit le résultat
+			$response = $resultat->fetch();
 
-			echo "Enregistrement effectué avec succès !";
+			// On compare le résultat
+			if($response[0] == 0){
+
+				// Requête d'enregistrement d'un nouveau contact
+				$requete = "INSERT INTO salaires (IdSalaire , IdEmployeur , dateDebut , dateFin , datePaie , montantBrut , montantNet , montantNetImp , nbreHeureMois , nbreHeureTotal , divers , Created, idUtilisateur)
+						    VALUES ('' , '$idEmployeur' , '$dateDeb' , '$dateFin' , '$datePaie' , '$montantBrut' , '$montantNet' , '$montantNetImp' , '$nbreHeureMois' , '$nbreHeureTotal' , '' , NOW() , '1')";
+
+				//exécution de la requête
+				$resultat = $bdd->query($requete) or die(print_r($bdd->errorInfo()));
+				// On ferme la requête
+				$resultat->closeCursor();
+
+				echo "Enregistrement effectué avec succès !";
+
+			}else{
+
+				// On ferme la requête
+				$resultat->closeCursor();
+
+				echo "Le salaire que vous venez de saisir existe déjà !";
+			}
 
 		}else{
 			echo "Vous devez choisir un employeur !";

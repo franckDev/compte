@@ -91,14 +91,18 @@ td{
  } 
 
  #loupe{
- 	float: right;
+ 	position:absolute;
+ 	top: 5em;
+ 	left: 74em;
  }
  #loupe:hover{
  	cursor: pointer;
  }
 
- #loupe2{
- 	float: right;
+#loupe2{
+ 	position:absolute;
+ 	top: 5em;
+ 	left: 74em;
  }
  #loupe2:hover{
  	cursor: pointer;

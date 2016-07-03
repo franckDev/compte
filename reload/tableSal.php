@@ -16,6 +16,7 @@
 		<th>Montant Net Imposable</th>
 		<th>Heures du mois</th>
 		<th>Heures cumul</th>
+		<th>Action</th>
 	</tr>
 <?php 
 	// On sélectionne tout ce qu'il y a dans la table des salaires avec les employeurs correspondants
@@ -33,6 +34,7 @@
 	<td><?php echo $donnees['montantNetImp']; ?> €</td>
 	<td><?php echo $donnees['nbreHeureMois']; ?></td>
 	<td><?php echo $donnees['nbreHeureTotal']; ?></td>
+	<td><a class="modSal" href="<?php echo $donnees['IdSalaire']; ?>"><img src="images/modifier.png" alt="Modifier"></a></td>
 </tr>
 <?php    	
     }

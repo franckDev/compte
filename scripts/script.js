@@ -54,6 +54,11 @@ $(document).ready(function(){
                     $("p#message4").empty(); // On vide le message
                     $("p#message4").append(texte); // Affiche le résultat dans le message
                     $("div#scroll2").load("reload/tableAll.php"); // On recharge le tableau des allocations
+                }else if (texte == "Mise à jour effectuée avec succès !"){
+                    $("p#message4").css('display', 'block'); // On active le message
+                    $("p#message4").empty(); // On vide le message
+                    $("p#message4").append(texte); // Affiche le résultat dans le message
+                    $("div#scroll2").load("reload/tableAll.php"); // On recharge le tableau des allocations
                 }else{
                     $("p#message4").css('display', 'block'); // On active le message
                     $("p#message4").empty(); // On vide le message
@@ -103,35 +108,52 @@ $(document).ready(function(){
         event.preventDefault();
         $('#formNew').css('display', 'block');
         $('.button').html('Fermer le formulaire');
-        var idSal = $('.modSal').attr("href"); // On récupère l'id sélectionnée
+        var idSal = $(this).attr("href"); // On récupère l'id sélectionnée
         // $('#formNew').load("modif/modifSal.php",{ "id[]": [idSal, ""] });
     });
 
-	// Affichage / Masquage des formulaires salaires 
+    // Affichage / Masquage des formulaires salaires 
     $('button.button').click(function(){
+
         if($('#formNew').css('display') == 'none'){
+
             $('#formNew').css('display', 'block');
-        	$('.button').html('Fermer le formulaire');
+            $('.button').html('Fermer le formulaire');
+
         }else{
+
             $('#formNew').css('display', 'none');
-        	$('.button').html('Enregistrer un salaire');
+            $('.button').html('Enregistrer un salaire');
         }
     });
 
     // Affichage / Masquage des formulaires allocations
     $('button.button2').click(function(){
 
-        if($('#formNew2').css('display') == 'none'){
+        if($('#modeAlo').val() == 'modification'){
+            $('#modeAlo').val('enregistrement');
+            $('#modeAlo').attr('name','enregistrement');
+            $('#fenetreForm4 h3').html('Formulaire d\'enregistrement');
+            $('#valideAlo').val('Enregistrer'); // On change le nom du bouton
+            // On réinitialise le formulaire
+            $('#resetAlo').click();
+            $('#hideId').attr('value',''); // On retire l'id du formulaire
 
-    		$('#formNew2').css('display', 'block');
-        	$('#enreg2').css('display', 'none');
-        	$('.button2').html('Fermer le formulaire');
+            $('#formNew2').css('display', 'none');
+            $('.button2').html('Enregistrer une allocation');
 
-    	}else{
+        }else if ($('#modeAlo').val() == 'enregistrement'){
+            
+            if($('#formNew2').css('display') == 'none'){
 
-    		$('#formNew2').css('display', 'none');
-        	$('#enreg2').css('display', 'block');
-        	$('.button2').html('Enregistrer une allocation');
+                $('#formNew2').css('display', 'block');
+                $('.button2').html('Fermer le formulaire');
+
+            }else{
+
+                $('#formNew2').css('display', 'none');
+                $('.button2').html('Enregistrer une allocation');
+            }
         }
         
     });
@@ -187,25 +209,6 @@ $(document).ready(function(){
     	}else{
 
     		$('#scroll').css({
-	    		height: 'auto',
-	    		'overflow-y': 'hidden'
-	    	});
-    	}
-    });
-
-    // Affichage en plein ecran du tableau des allocations
-    $('#loupe2').click(function() {
-    	
-    	if($('#scroll2').height() > 170){
-
-    		$('#scroll2').css({
-	    		height: '170',
-	    		'overflow-y': 'scroll'
-	    	});
-
-    	}else{
-
-    		$('#scroll2').css({
 	    		height: 'auto',
 	    		'overflow-y': 'hidden'
 	    	});
