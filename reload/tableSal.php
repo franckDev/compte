@@ -6,6 +6,7 @@
         exit('Impossible de se connecter à la base de données.');
     }
 ?>
+<div id="bandeau"><img id="loupe" src="images/loupe.png" alt="Loupe" title="Pour agrandir cliquez ici" /></div>
 <table>
 	<tr>
 		<th>Employeur</th>
