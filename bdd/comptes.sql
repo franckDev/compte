@@ -2,8 +2,8 @@
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost
--- Généré le :  Lun 04 Juillet 2016 à 12:17
+-- Client :  127.0.0.1
+-- Généré le :  Lun 04 Juillet 2016 à 18:45
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -34,8 +34,9 @@ CREATE TABLE IF NOT EXISTS `allocations` (
   `dateVersement` date NOT NULL,
   `paiementTiers` tinyint(1) NOT NULL,
   `Created` date NOT NULL,
+  `idUtilisateur` int(11) NOT NULL,
   PRIMARY KEY (`IdAllocation`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=92 ;
 
 -- --------------------------------------------------------
 
@@ -51,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `employeur` (
   `Ville` varchar(50) NOT NULL,
   `Created` date NOT NULL,
   PRIMARY KEY (`IdEmployeur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=81 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
 
 -- --------------------------------------------------------
 
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `etablissement` (
   `TypePresta` varchar(30) NOT NULL,
   `Created` date NOT NULL,
   PRIMARY KEY (`IdEtablissement`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
 -- --------------------------------------------------------
 
@@ -86,8 +87,21 @@ CREATE TABLE IF NOT EXISTS `salaires` (
   `nbreHeureTotal` decimal(20,2) NOT NULL,
   `divers` varchar(30) NOT NULL,
   `Created` date NOT NULL,
+  `idUtilisateur` int(11) NOT NULL,
   PRIMARY KEY (`IdSalaire`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Table des salaires' AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Table des salaires' AUTO_INCREMENT=40 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateur`
+--
+
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,
+  `Role` varchar(30) NOT NULL,
+  PRIMARY KEY (`idUtilisateur`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
