@@ -90,19 +90,28 @@ td{
  	margin-right: auto;
  } 
 
+div#bandeau{
+	height: 50px;
+	float: right;
+}
  #loupe{
- 	position:absolute;
+ 	/*position:absolute;
  	top: 5em;
- 	left: 74em;
+ 	left: 74em;*/
  }
  #loupe:hover{
  	cursor: pointer;
  }
 
+div#bandeau2{
+ 	height: 50px;
+ 	float: right;
+}
+
 #loupe2{
- 	position:absolute;
+ 	/*position:absolute;
  	top: 5em;
- 	left: 74em;
+ 	left: 74em;*/
  }
  #loupe2:hover{
  	cursor: pointer;
