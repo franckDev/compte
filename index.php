@@ -292,6 +292,7 @@
 							<option value="Famille">Allocation Familiale</option>
 							<option value="Chomage ARE">Allocation Chomage (ARE)</option>
 							<option value="Chomage ASS">Allocation Chomage (ASS)</option>
+							<option value="Assurance MAL">Assurance Maladie (AM)</option>
 						</select>
 					</p>
 				</fieldset>
