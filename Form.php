@@ -217,8 +217,10 @@
 
 			// Initialisation des variables
 		    $total=0;
-			$dateDebut = $_POST['DateDebRech'];
-			$dateFin = $_POST['DateFinRech'];
+			$dateDebut = date_create($_POST['DateDebRech']);
+			$dateDebut = date_format($dateDebut, 'Y-m-d');
+			$dateFin = date_create($_POST['DateFinRech']);
+			$dateFin = date_format($dateFin, 'Y-m-d');
 			$choix = $_POST['rubList'];
 
 			// Tableau des mois
@@ -237,7 +239,7 @@
 
 			if($choix == "lesDeux"){ // Recherche sur les deux critères
 				// On prepare l'entête du tableau
-				$content ="<table>
+				$content ="<table class='formTab'>
 							<tr>
 								<th>Type de revenu</th>
 								<th>Période</th>
@@ -331,7 +333,7 @@
 			}elseif($_POST['rubList'] == "Rechsal"){ // Recherche sur les salaires
 
 				// On prepare l'entête du tableau
-				$content ="<table>
+				$content ="<table class='formTab'>
 							<tr>
 								<th>Type de revenu</th>
 								<th>Période</th>
@@ -391,7 +393,7 @@
 			}elseif ($_POST['rubList'] == "Rechalloc"){ // Recherche sur les allocations
 
 				// On prepare l'entête du tableau
-				$content ="<table>
+				$content ="<table class='formTab'>
 							<tr>
 								<th>Type de revenu</th>
 								<th>Période</th>

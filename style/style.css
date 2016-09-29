@@ -56,19 +56,19 @@ h3{
 }
 
 /*tableau des salaires et des allocations*/
-table{
+table.formTab{
 	background-color: #BCC0C7;
 	border: 2px dashed #323C66;
 	padding: 10px;
 	width: 75em;
 }
 
-th{
+.formTab th{
 	text-align: left;
 	color: #037B17;
  	min-width: 50px;
 }
-td{
+.formTab td{
  	min-width: 50px;
 }
 

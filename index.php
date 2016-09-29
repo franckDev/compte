@@ -3,12 +3,16 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Salaire & Allocations</title>
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 		<link rel="stylesheet" href="style/style.css" />
 		<link rel="stylesheet" href="style/jcalculator.css" />
 		<!-- /**********************************SCRIPTS JQUERY****************************************************/ -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-		<script src="scripts/script.js"></script>
+		<script type="text/javascript" src="scripts/moment.min.js"></script>
+		<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 		<script src="scripts/jcalculator.js"></script>
+		<script src="scripts/script.js"></script>
 	</head>
 	<body>
 		<?php
@@ -33,7 +37,7 @@
 			<h1>Liste des salaires</h1>
 			<div id="scroll">
 			<div id="bandeau"><img id="loupe" src="images/loupe.png" alt="Loupe" title="Pour agrandir cliquez ici" /></div>
-				<table>
+				<table class="formTab">
 					<tr>
 						<th>Employeur</th>
 						<th>Date de début</th>
@@ -184,7 +188,7 @@
 			<h1>Liste des revenus d'allocations</h1>
 			<div id="scroll2">
 			<div id="bandeau2"><img id="loupe2" src="images/loupe.png" alt="Loupe" title="Pour agrandir cliquez ici" /></div>
-				<table>
+				<table class="formTab">
 					<tr>
 						<th>Etablissement</th>
 						<th>Type de prestation</th>
@@ -320,17 +324,35 @@
 					</p>
 					<p>
 						<label for="dateDebut">Date de début</label>
-						<input class="champs2" type="date" name="DateDebRech" value="" />
+						<input class="champs2" type="text" name="DateDebRech" value="" />
 						<input type="hidden" name="Recherche">
 					</p>
 					<p>
 						<label for="dateFin">Date de fin</label>
-						<input class="champs2" type="date" name="DateFinRech" value="" />
+						<input class="champs2" type="text" name="DateFinRech" value="" />
 					</p>
 						<input class="valide" type="submit" value="Rechercher">
 						<input class="reset" type="reset" value="Effacer">
 				</fieldset>
 			</form>
+			<script type="text/javascript">
+			$(function() {
+			    $('input[name="DateDebRech"]').daterangepicker({
+			    	locale: {
+				      format: 'DD-MM-YYYY'
+				    },
+			        singleDatePicker: true,
+			        showDropdowns: true
+			    }); 
+			    $('input[name="DateFinRech"]').daterangepicker({
+			    	locale: {
+				      format: 'DD-MM-YYYY'
+				    },
+			        singleDatePicker: true,
+			        showDropdowns: true
+			    });
+			});
+			</script>
 			<div id="result"></div>
 		</div><!--Fin du choix-->
 	</body>
