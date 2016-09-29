@@ -220,11 +220,6 @@
 			$dateDebut = $_POST['DateDebRech'];
 			$dateFin = $_POST['DateFinRech'];
 			$choix = $_POST['rubList'];
-			
-			// $dateDebut = new DateTime($dateDebut);
-			// $dateDebut = $dateDebut->format('Ymd');
-			// $dateFin = new DateTime($dateFin);
-			// $dateFin = $dateFin->format('Ymd');
 
 			// Tableau des mois
 			$moisTab = array("1"=>"Janvier",
@@ -275,8 +270,8 @@
 						$content.='<tr>
 									  <td class="orange">'.$typedeRevenu.'</td>
 									  <td class="orange">'.$periode.'</td>
-									  <td class="orange">'.$montantNet.'</td>
-									  <td class="orange">'.$total.'</td>
+									  <td class="orange">'.number_format($montantNet,2,",","").'</td>
+									  <td class="orange">'.number_format($total,2,",","").'</td>
 								  </tr>';
 				}
 
@@ -308,8 +303,8 @@
 						$content.='<tr>
 									  <td class="brown">'.$typedeRevenu.'</td>
 									  <td class="brown">'.$periode.'</td>
-									  <td class="brown">'.$montantNet.'</td>
-									  <td class="brown">'.$total.'</td>
+									  <td class="brown">'.number_format($montantNet,2,",","").'</td>
+									  <td class="brown">'.number_format($total,2,",","").'</td>
 								  </tr>';
 
 						
@@ -326,7 +321,7 @@
 
 		    			$content.='<tr>
 				    				  <td colspan="3"><b>Total des revenus et salaires pour la période du '.date_format($dateDebut,"j").' '.$moisTab[date_format($dateDebut,"n")].' '.date_format($dateDebut,"Y").' au '.date_format($dateFin,"j").' '.$moisTab[date_format($dateFin,"n")].' '.date_format($dateFin,"Y").' </b></td>
-									  <td colspan="1" class="red"><b>'.$total.'</b></td>
+									  <td colspan="1" class="red"><b>'.number_format($total,2,",","").'</b></td>
 								   <tr>
 								</table>';
 						// On affiche
@@ -369,8 +364,8 @@
 						$content.='<tr>
 									  <td class="orange">'.$typedeRevenu.'</td>
 									  <td class="orange">'.$periode.'</td>
-									  <td class="orange">'.$montantNet.'</td>
-									  <td class="orange">'.$total.'</td>
+									  <td class="orange">'.number_format($montantNet,2,",","").'</td>
+									  <td class="orange">'.number_format($total,2,",","").'</td>
 								  </tr>';
 				}
 
@@ -385,10 +380,11 @@
 
 		    			$content.='<tr>
 				    				  <td colspan="3"><b>Total des revenus et salaires pour la période du '.date_format($dateDebut,"j").' '.$moisTab[date_format($dateDebut,"n")].' '.date_format($dateDebut,"Y").' au '.date_format($dateFin,"j").' '.$moisTab[date_format($dateFin,"n")].' '.date_format($dateFin,"Y").' </b></td>
-									  <td colspan="1" class="red"><b>'.$total.'</b></td>
+									  <td colspan="1" class="red"><b>'.number_format($total,2,",","").'</b></td>
 								   <tr>
 								</table>';
 				// On affiche
+
    				echo $content;
 
 
@@ -428,8 +424,8 @@
 						$content.='<tr>
 									  <td class="brown">'.$typedeRevenu.'</td>
 									  <td class="brown">'.$periode.'</td>
-									  <td class="brown">'.$montantNet.'</td>
-									  <td class="brown">'.$total.'</td>
+									  <td class="brown">'.number_format($montantNet,2,",","").'</td>
+									  <td class="brown">'.number_format($total,2,",","").'</td>
 								  </tr>';
 
 						
@@ -446,7 +442,7 @@
 
 		    			$content.='<tr>
 				    				  <td colspan="3"><b>Total des revenus et salaires pour la période du '.date_format($dateDebut,"j").' '.$moisTab[date_format($dateDebut,"n")].' '.date_format($dateDebut,"Y").' au '.date_format($dateFin,"j").' '.$moisTab[date_format($dateFin,"n")].' '.date_format($dateFin,"Y").' </b></td>
-									  <td colspan="1" class="red"><b>'.$total.'</b></td>
+									  <td colspan="1" class="red"><b>'.number_format($total,2,",","").'</b></td>
 								   <tr>
 								</table>';
 						// On affiche
