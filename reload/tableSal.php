@@ -7,7 +7,7 @@
     }
 ?>
 <div id="bandeau"><img id="loupe" src="images/loupe.png" alt="Loupe" title="Pour agrandir cliquez ici" /></div>
-<table>
+<table class="formTab">
 	<tr>
 		<th>Employeur</th>
 		<th>Date de début</th>

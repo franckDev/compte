@@ -7,7 +7,7 @@
     }
 ?>
 <div id="bandeau2"><img id="loupe2" src="images/loupe.png" alt="Loupe" title="Pour agrandir cliquez ici" /></div>
-<table>
+<table class="formTab">
 	<tr>
 		<th>Etablissement</th>
 		<th>Type de prestation</th>
