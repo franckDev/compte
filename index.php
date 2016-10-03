@@ -27,7 +27,7 @@
 		<p id="rubrique">
 			<select name="choixRubrique" id="choix">
 				<option value="ChoixRub">Choisissez une rubrique à afficher</option>
-				<option value="Salaires">Salaires</option>
+				<option value="Salaires">Salaire</option>
 				<option value="Allocations">Allocations</option>
 				<option value="Recherche">Effectuer une recherche</option>
 			</select>
